@@ -1,3 +1,4 @@
+import Logo from '@/components/Logo';
 import Text from '@/components/Text';
 
 export default function Page() {
@@ -25,6 +26,8 @@ export default function Page() {
 
       {/* caption */}
       <Text as="span">12px 다람쥐 헌 쳇바퀴에 타고파</Text>
+      <Logo size="w-10" />
+      <Logo size="w-10" />
     </div>
   );
 }
