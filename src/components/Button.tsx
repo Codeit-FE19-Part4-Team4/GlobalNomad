@@ -50,12 +50,11 @@ export type ButtonProps<T extends ElementType> = {
 
 // 공통 기본 스타일
 const defaultClasses: string =
-  'flex items-center justify-center text-body-lg text-white font-[var(--weight-title-lg)] tracking-[var(--tracking-title-lg)] cursor-pointer disabled:cursor-default';
+  'flex items-center justify-center gap-1 text-body-lg text-white font-[var(--weight-title-lg)] tracking-[var(--tracking-title-lg)] cursor-pointer disabled:cursor-default';
 
 // 색상/역할별 스타일
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    'bg-primary-500 text-white hover:bg-[#2A86D9] disabled:bg-blue-300 disabled:bg-gray-200',
+  primary: 'bg-primary-500 text-white hover:bg-[#2A86D9] disabled:bg-gray-200',
   secondary: 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-25',
   tertiary: 'bg-gray-50 text-gray-600 hover:bg-gray-100',
 };
@@ -87,8 +86,7 @@ export default function Button<T extends ElementType = 'button'>({
   );
   return (
     <Component className={buttonClass} onClick={onClick} {...props}>
-      {/* prefix 아이콘이 있을 경우 */}
-      {prefix && <span className="mr-1">{prefix}</span>}
+      {prefix}
       {children}
     </Component>
   );
