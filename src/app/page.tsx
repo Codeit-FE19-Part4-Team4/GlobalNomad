@@ -1,3 +1,4 @@
+import Searchbar from '@/components/Searchbar';
 import Text from '@/components/Text';
 
 export default function Page() {
@@ -25,6 +26,12 @@ export default function Page() {
 
       {/* caption */}
       <Text as="span">12px 다람쥐 헌 쳇바퀴에 타고파</Text>
+      <div className="bg-primary-100 h-[250px] w-full">
+        <Searchbar
+          title="무엇을 체험하고 싶으신가요?"
+          placeholder="내가 원하는 체험은"
+        />
+      </div>
     </div>
   );
 }
