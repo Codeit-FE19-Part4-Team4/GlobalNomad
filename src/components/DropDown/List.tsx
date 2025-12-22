@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 
 import { useDropDownContext } from './index';
 
-const ListVariants = cva(
+const listVariants = cva(
   'absolute flex flex-col align gap-1 text-text-primary max-h-[250px] overflow-x-hidden overflw-y-auto border-gray-100 border bg-white z-10',
   {
     variants: {
@@ -23,6 +23,6 @@ export type ListProps = {
 };
 
 export default function List({ children }: ListProps) {
-  const { open, type } = useDropDownContext();
-  return open && <ul className={ListVariants({ type })}>{children}</ul>;
+  const { isOpen, type } = useDropDownContext();
+  return isOpen && <ul className={listVariants({ type })}>{children}</ul>;
 }

@@ -5,7 +5,7 @@ import Text from '../Text';
 import { cn } from '@/util/cn';
 
 export type TextAs = 'h2' | 'h3' | 'h4' | 'p' | 'span';
-const TitleVariants = cva(
+const titleVariants = cva(
   'text-body-lg font-[var(--weight-title-lg)] mb-[10px] text-gray-950',
   {
     variants: {
@@ -28,7 +28,7 @@ export type TitleProps = {
 
 export default function Title({ as, title, className, type }: TitleProps) {
   return (
-    <Text as={as} className={cn(TitleVariants({ type }), className)}>
+    <Text as={as} className={cn(titleVariants({ type }), className)}>
       {title}
     </Text>
   );

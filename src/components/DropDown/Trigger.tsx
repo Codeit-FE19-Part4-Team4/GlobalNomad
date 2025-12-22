@@ -12,7 +12,7 @@ import IcoMore from '@/assets/icons/activities/ic-more.svg';
 import { cn } from '@/util/cn';
 
 // 트리거 스타일 정의
-const TriggerVariants = cva('flex items-center relative cursor-pointer ', {
+const triggerVariants = cva('flex items-center relative cursor-pointer ', {
   variants: {
     type: {
       menu: 'w-[28px] h-[28px] justify-center',
@@ -53,17 +53,18 @@ export default function Trigger({
   placeholder,
   className,
 }: TriggerProps) {
-  const { open, toggle, item, type, setItem } = useDropDownContext();
-  const value = item || placeholder || children;
+  const { isOpen, setIsOpen, currentItem, type, setCurrentItem } =
+    useDropDownContext();
+  const value = currentItem || placeholder || children;
 
   useEffect(() => {
-    setItem(children || '');
+    setCurrentItem(children || '');
   }, []);
 
   return (
     <button
-      onClick={() => toggle(!open)}
-      className={cn(TriggerVariants({ type: type }), className)}>
+      onClick={() => setIsOpen(!isOpen)}
+      className={cn(triggerVariants({ type: type }), className)}>
       {type !== 'menu' ? (
         <>
           <span
@@ -73,7 +74,7 @@ export default function Trigger({
             {value}
           </span>
           <Image
-            src={open ? IcoDropUp : IcoDropDown}
+            src={isOpen ? IcoDropUp : IcoDropDown}
             alt=""
             className="absolute right-5"
           />

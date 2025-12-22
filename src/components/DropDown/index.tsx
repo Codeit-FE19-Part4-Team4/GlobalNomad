@@ -11,7 +11,7 @@ import Trigger from './Trigger';
 import useClickOutside from '@/hooks/useClickOutside';
 import { cn } from '@/util/cn';
 
-const DropdownVariants = cva('relative', {
+const dropdownVariants = cva('relative', {
   variants: {
     type: {
       menu: 'w-7',
@@ -28,10 +28,10 @@ export type TextAs = 'h2' | 'h3' | 'h4' | 'p' | 'span';
 export type DropDownType = 'menu' | 'select' | 'filter';
 
 interface DropDownContextValue {
-  open: boolean;
-  item: string;
-  toggle: React.Dispatch<React.SetStateAction<boolean>>;
-  setItem: React.Dispatch<React.SetStateAction<string>>;
+  isOpen: boolean;
+  currentItem: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentItem: React.Dispatch<React.SetStateAction<string>>;
   type: DropDownType;
 }
 interface DropDownProps {
@@ -62,18 +62,19 @@ const DropDownContext = createContext<DropDownContextValue | null>(null);
  * - 'menu'   : 액션 메뉴 (수정, 삭제 등)
  */
 function DropDown({ children, type = 'select', className }: DropDownProps) {
-  const [open, toggle] = useState(false);
-  const [item, setItem] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentItem, setCurrentItem] = useState('');
   const dropDownRef = useClickOutside(() => {
-    toggle(false);
+    setIsOpen(false);
   });
 
   return (
-    <DropDownContext.Provider value={{ open, toggle, setItem, item, type }}>
+    <DropDownContext.Provider
+      value={{ isOpen, setIsOpen, setCurrentItem, currentItem, type }}>
       <>
         <div
           ref={dropDownRef}
-          className={cn(DropdownVariants({ type }), className)}>
+          className={cn(dropdownVariants({ type }), className)}>
           {children}
         </div>
       </>
