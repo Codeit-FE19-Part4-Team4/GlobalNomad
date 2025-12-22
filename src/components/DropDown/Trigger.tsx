@@ -43,7 +43,7 @@ const textVariants = cva(
 );
 
 export type TriggerProps = {
-  children?: React.ReactNode;
+  children?: string;
   placeholder?: string;
   className?: string;
 };
@@ -57,8 +57,7 @@ export default function Trigger({
   const value = item || placeholder || children;
 
   useEffect(() => {
-    const val = typeof children === 'string' ? children : '';
-    setItem(val);
+    setItem(children || '');
   }, []);
 
   return (

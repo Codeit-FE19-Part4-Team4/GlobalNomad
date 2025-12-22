@@ -21,15 +21,14 @@ const ItemVariants = cva(
 );
 
 export type ItemProps = {
-  children: React.ReactNode;
+  children: string;
 
   onSelect?: (value: string) => void;
 };
 
 export default function Item({ children, onSelect }: ItemProps) {
   const { item, setItem, toggle, open, type } = useDropDownContext();
-
-  const value = typeof children === 'string' ? children : '';
+  const value = children || '';
 
   const handleClickItem = () => {
     toggle(!open);

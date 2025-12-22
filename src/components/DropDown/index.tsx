@@ -24,7 +24,7 @@ const DropdownVariants = cva('relative', {
   },
 });
 
-export type TextAs = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span';
+export type TextAs = 'h2' | 'h3' | 'h4' | 'p' | 'span';
 export type DropDownType = 'menu' | 'select' | 'filter';
 
 interface DropDownContextValue {
