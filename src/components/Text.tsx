@@ -13,7 +13,7 @@
  */
 
 /* 어떤 HTML 태그로 렌더링할지 선택 */
-export type TextAs = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span';
+export type TextAs = 'h2' | 'h3' | 'h4' | 'p' | 'span';
 
 /* 텍스트 크기 */
 export type TextSize =
