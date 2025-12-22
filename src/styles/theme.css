@@ -193,5 +193,5 @@
 }
 
 @theme {
-  --shadow-3xl: 0 6px 10px 0 rgba(13, 153, 255, 0.05);
+  --shadow-search: 0 6px 10px 0 rgba(13, 153, 255, 0.05);
 }

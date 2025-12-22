@@ -64,7 +64,7 @@ export default function Searchbar({
   return (
     <div className="flex flex-col items-center gap-3 py-4 sm:gap-9 sm:px-10 sm:py-8">
       <label className="sm:text-title-xl text-body-lg bold">{title}</label>
-      <div className="shadow-3xl bg-background relative w-full rounded-2xl sm:rounded-3xl">
+      <div className="shadow-search bg-background relative w-full rounded-2xl sm:rounded-3xl">
         <Image
           src={ic_search}
           alt="검색 아이콘"
@@ -81,7 +81,7 @@ export default function Searchbar({
         <Button
           variant="primary"
           size="lg"
-          className="bold text-background text-body-sm sm:text-body-lg absolute right-3 bottom-1.5 h-[41px] w-[85px] sm:bottom-2.5 sm:h-[50px] sm:w-[120px]"
+          className="bold text-background absolute right-3 bottom-1.5 h-[41px] w-[85px] text-[14px] sm:bottom-2.5 sm:h-[50px] sm:w-[120px] sm:text-[16px]"
           onClick={handleClickButton}>
           검색하기
         </Button>
