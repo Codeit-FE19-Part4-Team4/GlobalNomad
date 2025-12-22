@@ -81,7 +81,7 @@ export default function Searchbar({
         <Button
           variant="primary"
           size="lg"
-          className="bold text-background absolute right-3 bottom-1.5 h-[41px] w-[85px] text-[14px] sm:bottom-2.5 sm:h-[50px] sm:w-[120px] sm:text-[16px]"
+          className="bold text-background text-body-sm sm:text-body-lg absolute right-3 bottom-1.5 h-[41px] w-[85px] sm:bottom-2.5 sm:h-[50px] sm:w-[120px]"
           onClick={handleClickButton}>
           검색하기
         </Button>
