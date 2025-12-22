@@ -10,7 +10,7 @@ import {
   STATUS_BADGE_LABEL,
   StatusBadgeStatus,
 } from '@/constants/status-badge';
-import { statusBadgeStyle } from '@/constants/status-badge.cva';
+import { statusBadgeStyle } from '@/styles/cva/status-badge.cva';
 
 interface StatusBadgeProps {
   status: StatusBadgeStatus;
