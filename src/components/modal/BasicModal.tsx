@@ -30,14 +30,14 @@ export default function BasicModal({
 }) {
   return (
     <ModalContainer>
-      <div className="bg-background h-[170px] w-[400px] rounded-[30px] px-10 pt-10 pb-[30px]">
+      <div className="bg-background h-[140px] w-[320px] rounded-[30px] py-[30px] pt-[34px] pb-[30px] sm:h-[170px] sm:w-[400px] sm:px-10 sm:pt-10">
         <div className="flex w-full flex-col items-center justify-center gap-5">
-          <Text size="title-sm" className="bold">
+          <span className="text-[16px] font-bold sm:text-[18px]">
             {children}
-          </Text>
+          </span>
           <Button
             variant="primary"
-            className="h-[47px] w-[200px]"
+            className="h-[41px] w-[180px] sm:h-[47px] sm:w-[200px]"
             onClick={() => onClick?.()}>
             {buttonText}
           </Button>
