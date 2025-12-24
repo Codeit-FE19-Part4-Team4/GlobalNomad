@@ -9,7 +9,7 @@ import SidebarNav from './SidebarNav';
 export default function Sidebar() {
   const [profileImage, setProfileImage] = useState<string>();
 
-  const handleImageChange = async (file: File) => {
+  const handleImageChange = (file: File) => {
     const preview = URL.createObjectURL(file);
     setProfileImage(preview);
   };
