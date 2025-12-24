@@ -1,17 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useContext } from 'react';
+
+import { ModalDispatchContext, ModalStateContext } from './modal-context';
+// import type { OpenModalParams } from './modal-type';
 
 export const useModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const activeModal = useContext(ModalStateContext);
+  const { open: openModal, close: closeModal } =
+    useContext(ModalDispatchContext);
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
+  // const openModal = ({ type, props }: OpenModalParams) => {
+  //   open({ type, props });
+  //   console.log('open-modal', activeModal);
+  // };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  // const closeModal = (type: string) => {
+  //   close(type);
+  // };
 
-  return { isOpen, openModal, closeModal };
+  return { activeModal, openModal, closeModal };
 };
