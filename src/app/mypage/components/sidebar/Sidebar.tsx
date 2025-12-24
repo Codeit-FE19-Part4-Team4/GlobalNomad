@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import EditableProfile from '../profile/EditableProfile';
 
@@ -10,17 +10,21 @@ export default function Sidebar() {
   const [profileImage, setProfileImage] = useState<string>();
 
   const handleImageChange = async (file: File) => {
-    // TODO: 서버에 이미지 업로드 로직
-    console.log('Upload file:', file);
-
-    // 임시 미리보기
     const preview = URL.createObjectURL(file);
     setProfileImage(preview);
   };
 
+  useEffect(() => {
+    return () => {
+      if (profileImage) {
+        URL.revokeObjectURL(profileImage);
+      }
+    };
+  }, [profileImage]);
+
   return (
-    <aside className="w-64 rounded-lg bg-white px-3.5 py-6">
-      <div className="flex flex-col items-center pb-6">
+    <aside className="w-full rounded-lg bg-white px-3.5 py-4 md:w-45 md:py-6 lg:w-72.5">
+      <div className="flex flex-col items-center pb-4 md:pb-6">
         <EditableProfile src={profileImage} onImageChange={handleImageChange} />
       </div>
       <SidebarNav />

@@ -9,31 +9,31 @@ import activityIcon from '@/assets/icons/sidemenu/ic-setting.svg';
 import profileActiveIcon from '@/assets/icons/sidemenu/ic-user-active.svg';
 import profileIcon from '@/assets/icons/sidemenu/ic-user.svg';
 
-//TODO 각 메뉴 href 경로 연결
+//TODO 각 메뉴 href 임시 경로 : 실제 경로 연결 필요
 export const MY_PAGE_NAV_ITEMS = [
   {
     label: '내 정보',
     icon: profileIcon,
     activeIcon: profileActiveIcon,
-    href: '내 정보',
+    href: '/mypage/profile',
   },
   {
     label: '내 예약내역',
     icon: reservationIcon,
     activeIcon: reservationActiveIcon,
-    href: '내 예약내역',
+    href: '/mypage/reservations',
   },
   {
     label: '체험 관리',
     icon: activityIcon,
     activeIcon: activityActiveIcon,
-    href: '체험 관리',
+    href: '/mypage/activity',
   },
   {
     label: '체험 예약현황',
     icon: activityStatusIcon,
     activeIcon: activityStatusActiveIcon,
-    href: '체험 예약현황',
+    href: '/mypage/activity-status',
   },
   {
     label: '로그아웃',

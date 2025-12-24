@@ -12,6 +12,7 @@ interface SidebarNavItemProps {
   activeIcon: StaticImageData;
   href: string;
   className?: string;
+  onClick?: () => void;
 }
 
 export default function SidebarNavItem({
@@ -37,7 +38,7 @@ export default function SidebarNavItem({
       href={href}
       onClick={handleClick}
       className={cn(
-        'group flex items-center gap-3.5 rounded-lg px-5 py-3.5 text-gray-600 transition-colors',
+        'group flex items-center gap-3.5 rounded-lg px-4 py-3 text-gray-600 transition-colors md:px-3',
         isActive
           ? 'bg-primary-100 text-gray-950'
           : 'hover:bg-primary-100 hover:text-gray-950',
