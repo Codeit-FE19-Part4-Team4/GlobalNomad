@@ -1,5 +1,7 @@
+'use client';
+
 import Image from 'next/image';
-import { useId } from 'react';
+import { forwardRef, useId } from 'react';
 
 import Text from './Text';
 
@@ -10,19 +12,15 @@ import { cn } from '@/util/cn';
 type InputProps = {
   /** 라벨 텍스트 */
   label?: string;
-  /** placeholder 텍스트 */
-  placeholder?: string;
   /** 상태: 기본 / 에러 / 비활성화 */
   state?: 'default' | 'error' | 'disabled';
-  /** 입력값 */
-  value?: string;
   /** X 버튼 표시 */
   clearable?: boolean;
   /** 에러 메시지 */
   errorMessage?: string;
   /** 값 변경 시 호출 */
   onChange?: (value: string) => void;
-};
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
 
 /**
  * TextInput 컴포넌트
@@ -31,24 +29,29 @@ type InputProps = {
  *
  * @example
  * <TextInput label="이메일" placeholder="이메일을 입력하세요" /> 👉🏻 기본
- * <TextInput value={email} onChange={setEmail} clearable /> 👉🏻 삭제 버튼
- * <TextInput state={error ? 'error' : 'default'} errorMessage={error} /> 👉🏻 에러
- * <TextInput state="disabled" /> 👉🏻 비활성화
+ * <TextInput value={email} onChange={setEmail} clearable /> 👉🏻 X 버튼
+ * <TextInput state="error" errorMessage="이메일 형식이 아닙니다" /> 👉🏻 에러
+ * <TextInput state="disabled" value="수정불가" /> 👉🏻 비활성화
  */
-export default function TextInput({
-  label,
-  placeholder,
-  state = 'default',
-  value,
-  clearable,
-  errorMessage,
-  onChange,
-}: InputProps) {
+const TextInput = forwardRef<HTMLInputElement, InputProps>(function TextInput(
+  {
+    label,
+    state = 'default',
+    value,
+    clearable,
+    errorMessage,
+    onChange,
+    disabled,
+    className,
+    ...props
+  },
+  ref
+) {
   // label과 input을 연결하기 위한 고유 ID 생성
   const inputId = useId();
 
   // 조건 변수 분리
-  const isDisabled = state === 'disabled';
+  const isDisabled = state === 'disabled' || disabled;
   const showClearButton = clearable && value && !isDisabled;
   const showError = state === 'error' && errorMessage;
 
@@ -65,16 +68,18 @@ export default function TextInput({
       {/* 인풋 컨테이너: state에 따라 스타일 변경 */}
       <div className={cn(textInputStyle({ state }), 'group relative')}>
         <input
+          ref={ref}
           id={inputId}
-          placeholder={placeholder}
           value={value}
           disabled={isDisabled}
           onChange={(e) => onChange?.(e.target.value)}
           className={cn(
-            'w-full outline-none',
+            'w-full bg-transparent outline-none',
             'body-lg text-gray-900 placeholder-gray-300',
-            clearable && 'pr-12'
+            clearable && 'pr-12',
+            className
           )}
+          {...props}
         />
 
         {/* X 버튼 (포커스 시 표시) */}
@@ -101,4 +106,8 @@ export default function TextInput({
       )}
     </div>
   );
-}
+});
+
+TextInput.displayName = 'TextInput';
+
+export default TextInput;
