@@ -5,7 +5,7 @@ import { cardType } from '../card-type';
 import { cn } from '@/util/cn';
 
 export const cardTitleVariants = cva(
-  'font-[var(--weight-title-lg)] text-gray-950 tracking-[var(--tracking-title-xl)] overflow-hidden',
+  'font-[var(--weight-title-lg)] text-gray-950 tracking-[var(--tracking-title-xl)] overflow-hidden line-clamp-2',
   {
     variants: {
       type: {
@@ -32,14 +32,6 @@ interface CardTitleProps {
 
 export default function CardTitle({ title, type, className }: CardTitleProps) {
   return (
-    <div
-      className={cn(cardTitleVariants({ type }), className)}
-      style={{
-        display: '-webkit-box',
-        WebkitBoxOrient: 'vertical',
-        WebkitLineClamp: 2,
-      }}>
-      {title}
-    </div>
+    <div className={cn(cardTitleVariants({ type }), className)}>{title}</div>
   );
 }

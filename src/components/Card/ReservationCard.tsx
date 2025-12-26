@@ -36,7 +36,6 @@ import CardTitle from './components/CardTitle';
     id={item.id}
     title={item.activity.title}
     bannerImageUrl={item.activity.bannerImageUrl}
-    activityId={item.activity.id}
     price={item.totalPrice}
     date={item.date}
     startTime={item.startTime}
@@ -73,7 +72,7 @@ export default function ReservationCard({
         <div className={cardDetailVariants({ type })}>
           <div>
             <StatusBadge status={experienceStatus} />
-            <CardTitle title={title} type={type} className="mt-[11.5px]" />
+            <CardTitle title={title} type={type} className="mt-3" />
             <CardSchedule date={date} startTime={startTime} endTime={endTime} />
           </div>
           <div>

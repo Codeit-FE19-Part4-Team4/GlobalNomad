@@ -25,7 +25,6 @@ export interface ExperienceManageCardProps extends CardBaseProps {
   onDelete?: (id: number) => void;
 }
 export interface ReservationCardProps extends CardBaseProps {
-  activityId?: number;
   date: string;
   startTime: string;
   endTime: string;

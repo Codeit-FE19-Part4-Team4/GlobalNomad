@@ -8,7 +8,7 @@ import starUrl from '@/assets/icons/main/ic-start-on.svg';
 export const RatingAreaVariants = cva('flex items-center gap-0.5', {
   variants: {
     type: {
-      card: ' ',
+      card: null,
       list: 'mt-1 md:mt-[6px] lg:mt-2',
     },
   },
