@@ -34,7 +34,12 @@ export default function ToastContainer({ toasts }: ToastContainerProps) {
               {/* 아이콘이 있을 때 */}
               {icon && (
                 <div className="relative h-6 w-6 flex-shrink-0">
-                  <Image src={icon} alt="" fill className="object-contain" />
+                  <Image
+                    src={icon}
+                    alt={`${toast.type} 아이콘`}
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               )}
 
