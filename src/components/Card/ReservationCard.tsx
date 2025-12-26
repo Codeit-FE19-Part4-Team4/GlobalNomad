@@ -81,27 +81,26 @@ export default function ReservationCard({
           </div>
         </div>
       </div>
-      {isReviewPossible ||
-        (isCancelPossible && (
-          <div className={btnPosition}>
-            {isReviewPossible && (
-              <Button
-                size="xs"
-                variant="primary"
-                onClick={() => onReviewSubmit?.(id)}>
-                후기 작성
-              </Button>
-            )}
-            {isCancelPossible && (
-              <Button
-                size="xs"
-                variant="tertiary"
-                onClick={() => onReserveCancel?.(id)}>
-                예약 취소
-              </Button>
-            )}
-          </div>
-        ))}
+      {(isReviewPossible || isCancelPossible) && (
+        <div className={btnPosition}>
+          {isReviewPossible && (
+            <Button
+              size="xs"
+              variant="primary"
+              onClick={() => onReviewSubmit?.(id)}>
+              후기 작성
+            </Button>
+          )}
+          {isCancelPossible && (
+            <Button
+              size="xs"
+              variant="tertiary"
+              onClick={() => onReserveCancel?.(id)}>
+              예약 취소
+            </Button>
+          )}
+        </div>
+      )}
     </div>
   );
 }
