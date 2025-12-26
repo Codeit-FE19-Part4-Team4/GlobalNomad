@@ -1,5 +1,5 @@
 export interface OpenModalParams {
-  type: React.ComponentType<any>;
+  component: React.ComponentType<any>;
   props: Record<string, unknown>;
 }
 

@@ -1,20 +1,22 @@
 import Button from '../Button';
 
 /**
- * 
+ *
  * @example
- * const { isOpen, openModal, closeModal } = useModal();
- * 
+ * import BasicModal from "..."
+ * const {openModal, closeModal } = useModal();
+ * const parmas = {
+ *  component:BasicModal
+ *  props:{
+ *    message:"수정이 완료되었습니다."
+ *    buttonText:"확인"
+ *    onClick(closeModal(BasicModal)) //component에 적은 모달 그대로 사용해야함
+ *   }
+ * }
  * return (
  *  <>
- *    <button onClick={openModal}>모달 열기</button>
- *    {isOpen && (
-        <BasicModal buttonText="확인" onClick={closeModal}>
-          등록완료
-        </BasicModal>
-      )}
-    </>
-  )
+ *    <button onClick={openModal()}>모달 열기</button>
+ *  </>
  */
 export default function BasicModal({
   message,
