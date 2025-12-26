@@ -8,7 +8,9 @@ type ModalDispatchContextType = {
   close: (type: React.ComponentType<any>) => void;
 };
 
-export const ModalStateContext = createContext([] as ModalStateContextType);
-export const ModalDispatchContext = createContext(
-  {} as ModalDispatchContextType
-);
+export const ModalStateContext = createContext<
+  undefined | ModalStateContextType
+>(undefined);
+export const ModalDispatchContext = createContext<
+  undefined | ModalDispatchContextType
+>(undefined);

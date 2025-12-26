@@ -10,7 +10,7 @@ export default function ModalContainer() {
     setModalRoot(document.getElementById('modal-root') as HTMLElement);
   }, []);
   const { activeModal } = useModal();
-  if (!modalRoot || activeModal.length === 0) {
+  if (!modalRoot || activeModal?.length === 0) {
     return null;
   }
 
@@ -19,7 +19,7 @@ export default function ModalContainer() {
       {/*dim*/}
       <div className="absolute inset-0 bg-black opacity-50" />
       <div className="relative z-10">
-        {activeModal.map((modal) => {
+        {activeModal?.map((modal) => {
           const Modal = modal.type;
           return <Modal {...modal.props} key={modal.id} />;
         })}
