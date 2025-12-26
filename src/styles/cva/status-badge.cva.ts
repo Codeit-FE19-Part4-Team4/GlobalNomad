@@ -7,7 +7,7 @@ import { cva } from 'class-variance-authority';
 
 export const statusBadgeStyle = cva(
   // 기본 스타일
-  'inline-flex items-center px-3 py-1 rounded-lg bold body-lg',
+  'inline-flex items-center px-2 py-1 rounded-lg bold text-[13px]',
   {
     variants: {
       status: {
