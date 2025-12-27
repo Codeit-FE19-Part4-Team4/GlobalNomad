@@ -18,39 +18,25 @@ import CardTitle from './components/CardTitle';
  * 체험관리 화면의 카드 컴포넌트 입니다.
  *
  * @param type='list' 좌우형 카드타입
- * @param id 체험id
- * @param title 체험 제목
- * @param bannerImageUrl 체험 이미지
- * @param price 금액
- * @param rating 별점
- * @param reviewCount 리뷰 수
+ * @param item API 데이터
  * @param onEdit 수정하기 호출 이벤트
  * @param onDelete 삭제하기 호출 이벤트
  *
  * @example
  * <ExperienceManageCard
     key={item.id}
-    id={item.id}
-    title={item.title}
-    bannerImageUrl={item.bannerImageUrl}
-    price={item.price}
-    rating={item.rating}
-    reviewCount={item.reviewCount}
+    item={item}
     onEdit={() => handleEdit(item.id)}
     onDelete={() => handleDelete(item.id)}
   />
  */
 export default function ExperienceManageCard({
   type = 'list',
-  id,
-  title,
-  bannerImageUrl,
-  price,
-  rating,
-  reviewCount,
+  item,
   onEdit,
   onDelete,
 }: ExperienceManageCardProps) {
+  const { id, title, bannerImageUrl, price, rating, reviewCount } = item;
   return (
     <div className={cardListWrap}>
       <div className={cardVariants({ type })}>

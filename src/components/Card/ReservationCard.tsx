@@ -1,5 +1,5 @@
+import StatusBadge from '../Badge/StatusBadge';
 import Button from '../Button';
-import StatusBadge from '../StatusBadge';
 
 import {
   btnPosition,
@@ -17,53 +17,37 @@ import CardTitle from './components/CardTitle';
  * 체험 예약현황 화면의 카드 컴포넌트 입니다.
  *
  * @param type='list' 좌우형 카드타입
- * @param id 체험id
- * @param title 체험 제목
- * @param bannerImageUrl 체험 이미지
- * @param price 금액
- * @param date 체험일
- * @param startTime 체험시작 시간
- * @param endTime 체험종료 시간
- * @param headCount 인원
- * @param experienceStatus 체험 상태. pending(보류), confirmed(확정), declined(거절) canceled(취소), completed(완료)
- * @param reviewSubmitted 후기 작성 여부
+ * @param item API 데이터
  * @param onReviewSubmit 후기 작성 호출 이벤트
  * @param onReserveCancel 예약 취소 호출 이벤트
  * 
  * @example
  * <ReservationCard
     key={item.id}
-    id={item.id}
-    title={item.activity.title}
-    bannerImageUrl={item.activity.bannerImageUrl}
-    price={item.totalPrice}
-    date={item.date}
-    startTime={item.startTime}
-    endTime={item.endTime}
-    headCount={item.headCount}
-    experienceStatus={item.status}
-    reviewSubmitted={item.reviewSubmitted}
+    item={item}
     onReviewSubmit={() => handleReviewSubmit(item.id)}
     onReserveCancel={() => handleReserveCancel(item.id)}
   />
  */
 export default function ReservationCard({
   type = 'list',
-  id,
-  title,
-  bannerImageUrl,
-  price,
-  date,
-  startTime,
-  endTime,
-  headCount,
-  experienceStatus,
-  reviewSubmitted,
+  item,
   onReviewSubmit,
   onReserveCancel,
 }: ReservationCardProps) {
-  const isCancelPossible = experienceStatus === 'pending';
-  const isReviewPossible = !reviewSubmitted && experienceStatus === 'completed';
+  const {
+    activity,
+    totalPrice,
+    date,
+    startTime,
+    endTime,
+    headCount,
+    status,
+    reviewSubmitted,
+  } = item;
+  const { title, bannerImageUrl, id } = activity;
+  const isCancelPossible = status === 'pending';
+  const isReviewPossible = !reviewSubmitted && status === 'completed';
 
   return (
     <div className={cardListWrap}>
@@ -71,12 +55,12 @@ export default function ReservationCard({
         <CardThumb type={type} bannerImageUrl={bannerImageUrl} title={title} />
         <div className={cardDetailVariants({ type })}>
           <div>
-            <StatusBadge status={experienceStatus} />
+            <StatusBadge status={status} />
             <CardTitle title={title} type={type} className="mt-3" />
             <CardSchedule date={date} startTime={startTime} endTime={endTime} />
           </div>
           <div>
-            <CardPrice price={price} headCount={headCount} />
+            <CardPrice price={totalPrice} headCount={headCount} />
           </div>
         </div>
       </div>

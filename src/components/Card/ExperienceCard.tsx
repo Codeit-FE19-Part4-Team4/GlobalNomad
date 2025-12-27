@@ -13,35 +13,22 @@ import { cn } from '@/util/cn';
  * 체험목록 화면의 카드 컴포넌트 입니다.
  *
  * @param type type='card' 상하형 카드타입
- * @param id 체험id
- * @param title 체험 제목
- * @param bannerImageUrl 체험 이미지
- * @param price 금액
- * @param rating 별점
- * @param reviewCount 리뷰 수
+ * @param item API 데이터
+ * @param className 카드형태 스타일변경 가능한 클래스
  *
  * @example
   <ExperienceCard
     key={item.id}
-    id={item.id}
-    bannerImageUrl={item.bannerImageUrl}
-    title={item.title}
-    price={item.price}
-    rating={item.rating}
-    reviewCount={item.reviewCount}
+    item={item}
     className="w-[34.933vw]" //가로목록 형태일때 넓이스타일 추가
   />
  */
 export default function ExperienceCard({
   type = 'card',
-  id,
-  title,
-  bannerImageUrl,
-  price,
-  rating,
-  reviewCount,
   className,
+  item,
 }: ExperienceCardProps) {
+  const { id, title, bannerImageUrl, price, rating, reviewCount } = item;
   return (
     <Link
       href={`/activities/${id}`}
