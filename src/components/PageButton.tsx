@@ -1,14 +1,16 @@
 import { cn } from '@/util/cn';
 
+interface PageButtonProps {
+  page: number;
+  isClicked?: boolean;
+  onClick?: () => void;
+}
+
 export default function PageButton({
   page,
   isClicked = false,
   onClick,
-}: {
-  page: number;
-  isClicked?: boolean;
-  onClick?: () => void;
-}) {
+}: PageButtonProps) {
   return (
     <button
       onClick={onClick}

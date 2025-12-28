@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
-import PageButton from './toast/PageButton';
+import PageButton from './PageButton';
 
 import ic_page_off from '@/assets/icons/activities/ic-page-left-off.svg';
 import ic_page from '@/assets/icons/activities/ic-page-left.svg';
@@ -12,6 +12,11 @@ interface NavigationBtnProps {
   disabled: boolean;
   direction: 'prev' | 'next';
   onClick: () => void;
+}
+
+interface PaginationProps {
+  totalPage: number;
+  handleClickPage?: (page: number) => Promise<void>;
 }
 
 function NavigationBtn({ disabled, direction, onClick }: NavigationBtnProps) {
@@ -32,38 +37,27 @@ function NavigationBtn({ disabled, direction, onClick }: NavigationBtnProps) {
 export default function Pagination({
   totalPage,
   handleClickPage,
-}: {
-  totalPage: number;
-  handleClickPage?: (page: number) => Promise<void>;
-}) {
+}: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const currentGroup = Math.ceil(currentPage / 5);
 
   if (totalPage === 0) return null;
 
-  const pagesArray = Array.from({ length: totalPage }, (_, i) => i + 1);
-  const curtPageGrpArray = pagesArray.filter(
-    (el) => (currentGroup - 1) * 5 < el && el <= currentGroup * 5
+  const startPage = (currentGroup - 1) * 5 + 1;
+  const endPage = Math.min(currentGroup * 5, totalPage);
+  const curtPageGrpArray = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, i) => startPage + i
   );
 
   const handleClickNavBtn = (direction: 'prev' | 'next') => {
-    if (direction === 'prev') {
-      if (currentPage === 1) {
-        return;
-      }
-      const prevPage = currentPage - 1;
-
-      setCurrentPage(prevPage);
-      handleClickPage?.(prevPage);
-    } else {
-      if (currentPage === totalPage) {
-        return;
-      }
-      const nextPage = currentPage + 1;
-
-      setCurrentPage(nextPage);
-      handleClickPage?.(nextPage);
+    const pageToNavigate =
+      direction === 'prev' ? currentPage - 1 : currentPage + 1;
+    if (pageToNavigate < 1 || pageToNavigate > totalPage) {
+      return;
     }
+    setCurrentPage(pageToNavigate);
+    handleClickPage?.(pageToNavigate);
   };
 
   const onClickPage = (page: number) => {
