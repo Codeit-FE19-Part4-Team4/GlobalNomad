@@ -23,9 +23,9 @@ type TextInputProps = CommonInputProps & {
  * 텍스트 입력 컴포넌트
  *
  * @example
- * <TextInput label="이메일" placeholder="이메일을 입력하세요" /> 👉🏻 기본
+ * <TextInput label="이메일" value={email} onChange={setEmail} placeholder="이메일을 입력하세요" /> 👉🏻 기본
  * <TextInput value={email} onChange={setEmail} clearable /> 👉🏻 입력 삭제 버튼
- * <TextInput errorMessage="필수 입력입니다" /> 👉🏻 에러
+ * <TextInput value={email} onChange={setEmail} errorMessage="필수 입력입니다" /> 👉🏻 에러
  */
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   function TextInput(
