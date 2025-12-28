@@ -37,7 +37,9 @@ export default function ModalContainer() {
         const Modal = modal.component;
         const props = modal.props;
         return (
-          <div className="fixed inset-0 flex items-center justify-center">
+          <div
+            key={modal.id}
+            className="fixed inset-0 flex items-center justify-center">
             {/*dim*/}
             <div className="absolute inset-0 bg-black opacity-50" />
             <div className="relative z-10">
