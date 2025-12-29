@@ -25,7 +25,7 @@ export default function Footer() {
 
             <li className="relative h-6 w-6">
               <a
-                href="https://www.notion.so/..."
+                href="https://www.notion.so/2c5df82f6bdf80b58068d6613a2f06d2?source=copy_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block h-full w-full"
