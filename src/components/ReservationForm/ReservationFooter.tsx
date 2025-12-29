@@ -27,6 +27,8 @@ export default function ReservationFooter({
   setIsScheduleVisible,
   selectedTime,
   date,
+  setDate,
+  setCount,
 }: ReservationFooterProps) {
   const width = useWindowSize();
   const isMobile = width < 767;
@@ -38,7 +40,11 @@ export default function ReservationFooter({
   };
   // 닫기
   const handleCloseSchedule = () => {
+    setSelectedTime('');
+    setScheduleId(undefined);
     setIsScheduleVisible(false);
+    setDate(undefined);
+    setCount(0);
   };
   // 뒤로
   const handleBackSchedule = () => {

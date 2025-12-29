@@ -26,8 +26,10 @@ const PC_WIDTH = 1024;
 
 /**
  * 체험 예약현황 화면의 카드 컴포넌트 입니다.
+ * : 모바일,태블릿 화면에선 하단 고정영역이 있기때문에 부모div에 하단패딩값(ex:pb-[130px] lg:pb-0) 필요함. 
  *
- * @param availableDates 체험가능날짜 배열
+ * @param schedules 체험가능날짜
+ * @param activityPrice 체험 가격
  * 
  * @example
  * <ReservationForm
@@ -166,6 +168,8 @@ export default function ReservationForm({
         selectedTime={selectedTime}
         setSelectedTime={setSelectedTime}
         setIsScheduleVisible={setIsScheduleVisible}
+        setDate={setDate}
+        setCount={setCount}
       />
     </ReservationLayout>
   );

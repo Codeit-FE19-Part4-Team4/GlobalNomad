@@ -12,9 +12,7 @@ export const formatPrice = (price: number) => {
  */
 export function formatDateYYMMDD(date: Date) {
   if (!date) return '';
-
   const d = typeof date === 'string' ? new Date(date) : date;
-
   if (isNaN(d.getTime())) return '';
 
   const yy = String(d.getFullYear()).slice(-2);

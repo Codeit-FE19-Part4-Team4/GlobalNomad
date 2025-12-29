@@ -33,6 +33,8 @@ export interface ReservationFooterProps {
   isScheduleVisible: boolean;
   setIsScheduleVisible: React.Dispatch<React.SetStateAction<boolean>>;
   selectedTime: string;
+  setDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface ReservationLayoutProps {
