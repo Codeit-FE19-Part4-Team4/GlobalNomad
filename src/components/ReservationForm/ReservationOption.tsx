@@ -31,7 +31,6 @@ export default function ReservationOption({
   selectedDate,
   scheduleId,
   setScheduleId,
-  toggleMobile,
   selectedTime,
   setSelectedTime,
 }: ReservationOptionProps) {
@@ -82,11 +81,7 @@ export default function ReservationOption({
       </div>
       {/* 예약 시간 선택 */}
       <div
-        className={cn(
-          timeArea,
-          toggleMobile && 'hidden md:block',
-          scheduleId !== undefined && 'hidden md:block'
-        )}>
+        className={cn(timeArea, scheduleId !== undefined && 'hidden md:block')}>
         <Text size="body-lg" as="h3" className={cn(subTitle, 'mb-2')}>
           예약 가능한 시간
         </Text>

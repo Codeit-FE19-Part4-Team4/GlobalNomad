@@ -97,8 +97,20 @@ export const ACTIVITY_MOCK = {
     {
       id: 11,
       date: '2026-01-15',
-      startTime: '13:00',
-      endTime: '14:00',
+      startTime: '17:00',
+      endTime: '18:00',
+    },
+    {
+      id: 38,
+      date: '2026-01-05',
+      startTime: '18:00',
+      endTime: '19:00',
+    },
+    {
+      id: 39,
+      date: '2026-01-05',
+      startTime: '19:00',
+      endTime: '20:00',
     },
     {
       id: 12,

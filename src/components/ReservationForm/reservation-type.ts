@@ -5,8 +5,6 @@ export interface Schedule {
   endTime: string; // "HH:mm"
 }
 
-export const PC_WIDTH = 1024;
-
 export interface ReservationFormProps {
   schedules: readonly Schedule[];
   activityPrice: number;
@@ -21,14 +19,17 @@ export interface ReservationOptionProps {
   setScheduleId: React.Dispatch<React.SetStateAction<number | undefined>>;
   selectedTime: string;
   setSelectedTime: React.Dispatch<React.SetStateAction<string>>;
-  toggleMobile: boolean;
 }
 
 export interface ReservationFooterProps {
   disabled: boolean;
+  onClick: () => void;
   activityPrice: number;
   count: number;
   date: Date | undefined;
+  scheduleId: number | undefined;
+  setScheduleId: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setSelectedTime: React.Dispatch<React.SetStateAction<string>>;
   isScheduleVisible: boolean;
   setIsScheduleVisible: React.Dispatch<React.SetStateAction<boolean>>;
   selectedTime: string;

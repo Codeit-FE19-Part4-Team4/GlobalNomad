@@ -6,8 +6,10 @@ import {
   footerInr,
   infoPrice,
   mobileBtns,
+  txtPrice,
+  txtPerson,
 } from './reservation-style';
-import { PC_WIDTH, ReservationFooterProps } from './reservation-type';
+import { ReservationFooterProps } from './reservation-type';
 
 import useWindowSize from '@/hooks/useWindowSize';
 import { cn } from '@/util/cn';
@@ -15,44 +17,74 @@ import { formatDateYYMMDD, formatPrice } from '@/util/format';
 
 export default function ReservationFooter({
   disabled,
+  onClick,
   activityPrice,
   count,
+  scheduleId,
+  setScheduleId,
+  setSelectedTime,
   isScheduleVisible,
   setIsScheduleVisible,
   selectedTime,
   date,
 }: ReservationFooterProps) {
   const width = useWindowSize();
-  const isMobile = PC_WIDTH > width;
+  const isMobile = width < 767;
+  const isNotPC = width < 1024;
 
-  // 확인 (스케줄 선택 영역 숨김 + 예약버튼 노출)
+  // 확인
   const handleConfirmSchedule = () => {
     setIsScheduleVisible(false);
   };
+  // 닫기
+  const handleCloseSchedule = () => {
+    setIsScheduleVisible(false);
+  };
+  // 뒤로
+  const handleBackSchedule = () => {
+    setSelectedTime('');
+    setScheduleId(undefined);
+  };
+  const shouldShowInfo = isScheduleVisible && isMobile;
+  const shouldShowPrice =
+    !isNotPC || (isNotPC && count > 0) || (isMobile && isScheduleVisible);
   return (
-    <div className={cn(footerBox)}>
-      {/* 상단 가격안내 */}
-      <div className={cn(infoPrice)}>
-        <span className="text-[24px] font-[var(--weight-title-md)] tracking-[-1px]">
+    <div
+      className={cn(footerBox, !isScheduleVisible && 'border-t border-[#ddd]')}>
+      {/* 인당가격 */}
+      <div className={cn(infoPrice, shouldShowPrice && 'hidden')}>
+        <span
+          className={cn(
+            txtPrice,
+            'font-[var(--weight-title-md)] lg:text-[24px]'
+          )}>
           ₩ {formatPrice(activityPrice)}
         </span>
-        <span className="text-[20px] tracking-[-3px] text-[#79747E]">/ 인</span>
+        <span
+          className={cn(
+            txtPerson,
+            'lg:block lg:text-[20px] lg:tracking-[-3px]'
+          )}>
+          / 1인
+        </span>
       </div>
 
-      <div className={cn(footerInr)}>
+      <div className={cn(footerInr, shouldShowInfo && 'hidden')}>
         {/* 총합계 (가격,인원) */}
         <div className="flex items-center">
           <span className="hidden text-[16px] text-[#79747e] lg:mr-[6px] lg:inline-block">
             총 합계
           </span>
-          <strong className="text-[20px] leading-1 tracking-[-1px]">
-            ₩ {formatPrice(activityPrice * count)}
-          </strong>
-          <span className="ml-[6px] text-[16px] tracking-[-1px] text-[#79747e] lg:hidden">
-            / {count} 명
-          </span>
+          {shouldShowPrice && (
+            <>
+              <strong className={cn(txtPrice)}>
+                ₩ {formatPrice(activityPrice * count)}
+              </strong>
+              <span className={cn(txtPerson)}>/ {count}인</span>
+            </>
+          )}
         </div>
-        {/* 스케쥴 영역 토글 */}
+        {/* 날짜시간정보 or 날짜선택하기 */}
         <div>
           {date ? (
             <button
@@ -69,23 +101,35 @@ export default function ReservationFooter({
           )}
         </div>
       </div>
-      {/* 하단 버튼 영역 */}
+      {/* 하단 예약하기 버튼 */}
       <Button
         variant="primary"
         size="lg"
         disabled={disabled}
+        onClick={onClick}
         className={cn(
           isScheduleVisible && 'hidden lg:flex',
           'w-full lg:w-[135px]'
         )}>
         예약하기
       </Button>
-      {/* 하단 버튼 영역 (모바일,탭 전용) */}
+      {/* 하단 뒤로/닫기 + 확인 버튼 (only 모바일,탭) */}
       <div className={cn(mobileBtns, isScheduleVisible && 'grid lg:hidden')}>
         <Button
           variant="secondary"
           size="lg"
-          onClick={() => setIsScheduleVisible(false)}>
+          onClick={handleBackSchedule}
+          className={cn(scheduleId === undefined && 'hidden', 'md:hidden')}>
+          뒤로
+        </Button>
+        <Button
+          variant="secondary"
+          size="lg"
+          onClick={handleCloseSchedule}
+          className={cn(
+            isMobile && scheduleId === undefined ? 'flex' : 'hidden',
+            'md:flex'
+          )}>
           닫기
         </Button>
         <Button

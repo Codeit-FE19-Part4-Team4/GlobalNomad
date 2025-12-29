@@ -15,7 +15,7 @@ export default function ReservationLayout({
 }: ReservationLayoutProps) {
   return (
     <div className={cn(reservationWrap)}>
-      <div className={cn(reservationDimmed)}></div>
+      {isScheduleVisible && <div className={cn(reservationDimmed)}></div>}
       <div
         className={cn(
           reservationBox,

@@ -13,7 +13,7 @@ import {
   reservationArea,
   reservationInner,
 } from './reservation-style';
-import { PC_WIDTH, ReservationFormProps, Schedule } from './reservation-type';
+import { ReservationFormProps, Schedule } from './reservation-type';
 import ReservationFooter from './ReservationFooter';
 import ReservationLayout from './ReservationLayout';
 import ReservationOption from './ReservationOption';
@@ -21,6 +21,8 @@ import ReservationOption from './ReservationOption';
 import { Calendar } from '@/components/ui/calendar';
 import useWindowSize from '@/hooks/useWindowSize';
 import { cn } from '@/util/cn';
+
+const PC_WIDTH = 1024;
 
 /**
  * 체험 예약현황 화면의 카드 컴포넌트 입니다.
@@ -33,7 +35,6 @@ import { cn } from '@/util/cn';
     activityPrice={API_DATA.price}
   />
  */
-
 export default function ReservationForm({
   schedules,
   activityPrice,
@@ -46,16 +47,19 @@ export default function ReservationForm({
   const [scheduleId, setScheduleId] = React.useState<number | undefined>(
     undefined
   );
-  const availableDates = schedules.map((schedule) => new Date(schedule.date)); //이용 가능한 날짜
+  const availableDates = schedules.map((schedule) => new Date(schedule.date));
   const isReservation = count !== 0 && !!scheduleId;
   const [isScheduleVisible, setIsScheduleVisible] =
     React.useState<boolean>(false); // 날짜+인원+시간 영역 노출컨트롤
-  const [toggleMobile, setToggleMobile] = React.useState<boolean>(false);
+  const width = useWindowSize();
 
   // POST /reservations 요청 payload
   const reservationData = {
     scheduleId,
     headCount: count,
+  };
+  const handleReservation = () => {
+    alert('213');
   };
 
   // 달력 날짜 선택
@@ -68,26 +72,22 @@ export default function ReservationForm({
     });
     setSelectedDate(selectedSchedule);
     setScheduleId(undefined);
+    setSelectedTime('');
   };
 
   // 해상도 1024 이하일때 배경 스크롤 제어
-  const width = useWindowSize();
-  const prevWidthRef = useRef(width);
   useEffect(() => {
-    if (prevWidthRef.current === 0) {
-      document.body.classList.toggle('modal-open', width < PC_WIDTH);
-      prevWidthRef.current = width;
-      return;
+    const isMobile = width < PC_WIDTH;
+    if (isMobile) {
+      if (!isScheduleVisible) {
+        document.body.classList.remove('modal-open');
+        return;
+      }
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
     }
-    const prevWidth = prevWidthRef.current;
-    if (
-      (prevWidth >= PC_WIDTH && width < PC_WIDTH) ||
-      (prevWidth < PC_WIDTH && width >= PC_WIDTH)
-    ) {
-      document.body.classList.toggle('modal-open', width < PC_WIDTH);
-    }
-    prevWidthRef.current = width;
-  }, [width]);
+  }, [width, isScheduleVisible]);
   return (
     <ReservationLayout date={date} isScheduleVisible={isScheduleVisible}>
       <div
@@ -104,11 +104,7 @@ export default function ReservationForm({
         </Text>
         <div className={cn(reservationArea)}>
           {/* 캘린더 */}
-          <div
-            className={cn(
-              toggleMobile && 'hidden md:block',
-              scheduleId !== undefined && 'hidden md:block'
-            )}>
+          <div className={cn(scheduleId !== undefined && 'hidden md:block')}>
             <Calendar
               mode="single"
               selected={date}
@@ -116,13 +112,16 @@ export default function ReservationForm({
               month={currentMonth}
               onMonthChange={setCurrentMonth}
               disabled={(day) => {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const isPast = day < today;
                 const isSameMonth =
                   day.getMonth() === currentMonth.getMonth() &&
                   day.getFullYear() === currentMonth.getFullYear();
                 const isAvailable = availableDates.some(
                   (available) => available.toDateString() === day.toDateString()
                 );
-                return !isSameMonth || !isAvailable;
+                return !isSameMonth || !isAvailable || isPast;
               }}
               modifiers={{
                 available: availableDates,
@@ -148,7 +147,6 @@ export default function ReservationForm({
             selectedDate={selectedDate}
             scheduleId={scheduleId}
             setScheduleId={setScheduleId}
-            toggleMobile={toggleMobile}
             selectedTime={selectedTime}
             setSelectedTime={setSelectedTime}
           />
@@ -158,11 +156,15 @@ export default function ReservationForm({
       {/* 총합계 & 예약하기 */}
       <ReservationFooter
         disabled={!isReservation}
+        onClick={handleReservation}
+        date={date}
         activityPrice={activityPrice}
         count={count}
-        date={date}
+        scheduleId={scheduleId}
+        setScheduleId={setScheduleId}
         isScheduleVisible={isScheduleVisible}
         selectedTime={selectedTime}
+        setSelectedTime={setSelectedTime}
         setIsScheduleVisible={setIsScheduleVisible}
       />
     </ReservationLayout>

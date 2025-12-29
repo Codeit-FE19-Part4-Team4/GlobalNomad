@@ -46,9 +46,11 @@ export const reservationBox = [
   'md:h-auto pt-[24px] px-[24px]',
   'lg:block lg:h-[100%] lg:min-h-[856px] lg:p-[30px] lg:pt-[83px] lg:rounded-[24px] lg:shadow-[0_4px_24px_0_rgba(156,180,202,0.2)] lg:border lg:border-[#ddd] lg:relative',
 ];
-export const reservationBoxHide = ['md:min-h-[124px] rounded-[0] pt-[0]'];
+export const reservationBoxHide = [
+  'relative md:min-h-[124px] rounded-[0] pt-[0]',
+];
 export const reservationArea = [
-  'flex justify-between flex-col',
+  'flex justify-between flex-col mb-[9px]',
   'md:flex-row md:mb-[34px]',
   'lg:flex-wrap lg:gap-6 lg:relative lg:mb-0',
 ];
@@ -92,14 +94,18 @@ export const timeRadio = [
  * ReservationFooter 스타일
  */
 export const infoPrice =
-  'absolute top-[30px] lg:flex items-center gap-1 hidden';
+  'absolute top-[20px] left-[24px] items-center flex lg:gap-1 lg:top-[30px] lg:left-[30px] lg:flex';
+export const txtPrice = 'text-[20px] leading-1 tracking-[-1px]';
+export const txtPerson =
+  'ml-[6px] text-[16px] tracking-[-1px] text-[#79747e] lg:hidden';
+
 export const footerInr =
   'w-full flex justify-between mb-[12px] h-[26px] lg:mb-0';
 export const footerBox = [
-  'flex flex-col items-center justify-between',
+  'relative flex flex-col items-center justify-between',
   '-mx-[24px] px-[24px] pt-[18px] pb-[18px] w-[calc(100%+48px)]',
   'md:border-t md:border-[#ddd]',
-  'lg:w-full lg:flex-row lg:mt-[33px] lg:mx-0 lg:px-0 lg:pt-[20px] lg:pb-[10px]',
+  'lg:w-full lg:flex-row lg:mt-[33px] lg:mx-0 lg:px-0 lg:pt-[20px] lg:pb-[10px] lg:static',
 ];
 export const footerTextBtn = [
   'text-primary-500 border-primary-500 cursor-pointer border-b-[2px] text-[16px] leading-[24px] font-[var(--weight-title-md)] tracking-[-1px] align-top -mt-[1px]',
