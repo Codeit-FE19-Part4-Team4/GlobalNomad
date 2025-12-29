@@ -8,6 +8,8 @@ import ic_page_off from '@/assets/icons/activities/ic-page-left-off.svg';
 import ic_page from '@/assets/icons/activities/ic-page-left.svg';
 import { cn } from '@/util/cn';
 
+const PAGES_PER_GROUP = 5;
+
 interface NavigationBtnProps {
   disabled: boolean;
   direction: 'prev' | 'next';
@@ -39,12 +41,12 @@ export default function Pagination({
   handleClickPage,
 }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const currentGroup = Math.ceil(currentPage / 5);
+  const currentGroup = Math.ceil(currentPage / PAGES_PER_GROUP);
 
   if (totalPage === 0) return null;
 
-  const startPage = (currentGroup - 1) * 5 + 1;
-  const endPage = Math.min(currentGroup * 5, totalPage);
+  const startPage = (currentGroup - 1) * PAGES_PER_GROUP + 1;
+  const endPage = Math.min(currentGroup * PAGES_PER_GROUP, totalPage);
   const curtPageGrpArray = Array.from(
     { length: endPage - startPage + 1 },
     (_, i) => startPage + i
