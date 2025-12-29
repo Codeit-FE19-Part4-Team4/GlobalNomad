@@ -51,7 +51,6 @@ export default function BaseInput({
               {errorMessage}
             </Text>
           ) : (
-            <span />
           )}
           {rightBottom}
         </div>
