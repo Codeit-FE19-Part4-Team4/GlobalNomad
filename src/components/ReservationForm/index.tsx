@@ -52,7 +52,7 @@ export default function ReservationForm({
   const availableDates = schedules.map((schedule) => new Date(schedule.date));
   const isReservation = count !== 0 && !!scheduleId;
   const [isScheduleVisible, setIsScheduleVisible] =
-    React.useState<boolean>(false); // 날짜+인원+시간 영역 노출컨트롤
+    React.useState<boolean>(false);
   const width = useWindowSize();
 
   // POST /reservations 요청 payload
@@ -60,9 +60,8 @@ export default function ReservationForm({
     scheduleId,
     headCount: count,
   };
-  const handleReservation = () => {
-    alert('213');
-  };
+  // POST /reservations
+  const handleReservation = () => {};
 
   // 달력 날짜 선택
   const handleSelectDate = (selectedDate?: Date) => {
