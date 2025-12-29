@@ -34,6 +34,7 @@ interface FilterProps {
 const Filter = forwardRef<HTMLButtonElement, FilterProps>(
   ({ children, selected = false, size = 'lg', category, onClick }, ref) => {
     const icon = category && CATEGORY_ICON[category];
+    const iconSize = size === 'sm' ? 20 : 24;
 
     return (
       <button
@@ -45,8 +46,8 @@ const Filter = forwardRef<HTMLButtonElement, FilterProps>(
           <Image
             src={selected ? icon.active : icon.default}
             alt=""
-            width={24}
-            height={24}
+            width={iconSize}
+            height={iconSize}
           />
         )}
         {children}
