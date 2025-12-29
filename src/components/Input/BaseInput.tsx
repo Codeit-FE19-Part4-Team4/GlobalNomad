@@ -44,17 +44,20 @@ export default function BaseInput({
       {children(inputId)}
 
       {/* 하단 영역 (에러 메시지, 글자 수 등) */}
-      {(hasError || rightBottom) && (
-        <div className="flex items-center justify-between">
-          {hasError ? (
-            <Text as="span" className="body-sm text-red-500">
+       {(hasError || rightBottom) && (
+        <div className='flex items-center justify-between'>
+          {hasError && (
+            <Text as='span' className='body-sm text-red-500'>
               {errorMessage}
             </Text>
-          ) : (
           )}
           {rightBottom}
         </div>
       )}
+    </div>
+  );
+}
+
     </div>
   );
 }
