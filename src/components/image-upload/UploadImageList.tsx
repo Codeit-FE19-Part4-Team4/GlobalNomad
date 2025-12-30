@@ -77,19 +77,17 @@ export default function UploadImageList({
           maxImages={maxImages}
           multiple={multiple}
         />
-        <div className="flex gap-3 sm:gap-[14px]">
-          {images.length > 0 &&
-            images.map((image) => {
-              return (
-                <Preview
-                  key={image.id}
-                  file={image.file}
-                  label={label}
-                  onDelete={handleDeleteImage}
-                />
-              );
-            })}
-        </div>
+        {images.length > 0 &&
+          images.map((image) => {
+            return (
+              <Preview
+                key={image.id}
+                file={image.file}
+                label={label}
+                onDelete={handleDeleteImage}
+              />
+            );
+          })}
       </div>
     </div>
   );

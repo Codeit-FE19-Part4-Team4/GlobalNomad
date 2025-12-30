@@ -35,7 +35,7 @@ export default function Preview({ file, label, onDelete }: PreviewProps) {
           fill
           src={url}
           alt={`${label}`}
-          className="h-[126px] w-[126px] rounded-2xl object-cover"
+          className="rounded-2xl object-cover"
         />
       </div>
       <button

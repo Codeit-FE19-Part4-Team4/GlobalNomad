@@ -69,7 +69,7 @@ export default function ImageForm({
         )}>
         <Image
           src={disabled ? ic_add_disable : ic_add}
-          alt={disabled ? '이미지 추가' : '이미지 추가 제한'}
+          alt={disabled ? '이미지 추가 제한' : '이미지 추가'}
           className="h-10 w-10"
         />
         <span className="text-[14px] text-gray-600">{`${imgCount}/${maxImages}`}</span>
