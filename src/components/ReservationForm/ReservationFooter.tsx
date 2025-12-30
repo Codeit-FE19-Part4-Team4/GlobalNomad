@@ -72,7 +72,7 @@ export default function ReservationFooter({
             txtPerson,
             'lg:block lg:text-[20px] lg:tracking-[-3px]'
           )}>
-          / 1인
+          / 1명
         </span>
       </div>
 
@@ -87,7 +87,7 @@ export default function ReservationFooter({
               <strong className={cn(txtPrice)}>
                 ₩ {formatPrice(activityPrice * count)}
               </strong>
-              <span className={cn(txtPerson)}>/ {count}인</span>
+              <span className={cn(txtPerson)}>/ {count}명</span>
             </>
           )}
         </div>
