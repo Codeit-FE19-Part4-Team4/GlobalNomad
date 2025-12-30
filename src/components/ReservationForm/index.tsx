@@ -6,7 +6,6 @@ import * as React from 'react';
 
 import Text from '../Text';
 
-import { getAvailableSchedule } from './reservation-api';
 import {
   calendar,
   calendarClasses,
