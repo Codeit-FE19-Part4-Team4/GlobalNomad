@@ -6,6 +6,7 @@ import * as React from 'react';
 
 import Text from '../Text';
 
+import { getAvailableSchedule } from './reservation-api';
 import {
   calendar,
   calendarClasses,
@@ -14,7 +15,11 @@ import {
   reservationArea,
   reservationInner,
 } from './reservation-style';
-import { ReservationFormProps, Schedule } from './reservation-type';
+import {
+  ReservationFormProps,
+  ReservationProps,
+  Schedule,
+} from './reservation-type';
 import ReservationFooter from './ReservationFooter';
 import ReservationLayout from './ReservationLayout';
 import ReservationOption from './ReservationOption';
@@ -31,16 +36,19 @@ const PC_WIDTH = 1024;
  *
  * @param schedules 체험가능날짜
  * @param activityPrice 체험 가격
+ * @param activityId 체험 ID
  * 
  * @example
  * <ReservationForm
-    schedules={API_DATA.schedules}
-    activityPrice={API_DATA.price}
+    schedules={schedules}
+    activityPrice={activityPrice}
+    activityId={activityId}
   />
  */
 export default function ReservationForm({
   schedules,
   activityPrice,
+  activityId,
 }: ReservationFormProps) {
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   const [count, setCount] = React.useState<number>(0);
@@ -50,6 +58,7 @@ export default function ReservationForm({
   const [scheduleId, setScheduleId] = React.useState<number | undefined>(
     undefined
   );
+  // 이용가능한 날짜
   const availableDates = React.useMemo(
     () => schedules.map((schedule) => new Date(schedule.date)),
     [schedules]
@@ -62,13 +71,8 @@ export default function ReservationForm({
     React.useState<boolean>(false);
   const width = useWindowSize();
 
-  // POST /reservations 요청 payload
-  const reservationData = {
-    scheduleId,
-    headCount: count,
-  };
-  // POST /reservations
-  const handleReservation = () => {};
+  // TODO: POST 예약하기
+  const handleReservation = ({ scheduleId, count }: ReservationProps) => {};
 
   // 달력 날짜 선택
   const handleSelectDate = (selectedDate?: Date) => {
@@ -82,12 +86,16 @@ export default function ReservationForm({
     setScheduleId(undefined);
     setSelectedTime('');
   };
+  // 달력 월 선택
+  const handleMonthChange = (month: Date) => {
+    setCurrentMonth(month);
+    // TODO: 체험 예약 가능일 조회 API연결
+  };
 
   // 해상도 1024 이하일때 배경 스크롤 제어
   useEffect(() => {
     if (width === undefined) return;
-    const isMobile = width < PC_WIDTH;
-    if (isMobile) {
+    if (width < PC_WIDTH) {
       if (!isScheduleVisible) {
         document.body.classList.remove('modal-open');
         return;
@@ -120,7 +128,7 @@ export default function ReservationForm({
               selected={date}
               onSelect={handleSelectDate}
               month={currentMonth}
-              onMonthChange={setCurrentMonth}
+              onMonthChange={handleMonthChange}
               disabled={(day) => {
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);

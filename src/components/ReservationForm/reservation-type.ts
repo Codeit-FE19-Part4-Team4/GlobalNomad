@@ -1,13 +1,23 @@
-export interface Schedule {
+export interface TimeSlot {
   id: number;
-  date: string; // "YYYY-MM-DD"
   startTime: string; // "HH:mm"
   endTime: string; // "HH:mm"
+}
+
+export interface Schedule {
+  date: string;
+  times: TimeSlot[];
 }
 
 export interface ReservationFormProps {
   schedules: readonly Schedule[];
   activityPrice: number;
+  activityId: number;
+}
+
+export interface ReservationProps {
+  scheduleId: number;
+  count: number;
 }
 
 export interface ReservationOptionProps {
@@ -23,7 +33,7 @@ export interface ReservationOptionProps {
 
 export interface ReservationFooterProps {
   disabled: boolean;
-  onClick: () => void;
+  onClick: (params: ReservationProps) => void;
   activityPrice: number;
   count: number;
   date: Date | undefined;

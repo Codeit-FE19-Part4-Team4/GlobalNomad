@@ -87,28 +87,32 @@ export default function ReservationOption({
         </Text>
         <div className={cn(timeBox)}>
           {date ? (
-            selectedDate.map((item) => {
-              const { startTime, endTime, id } = item;
-              return (
-                <label
-                  key={id}
-                  htmlFor={`time` + id}
-                  className="relative w-[calc((100%-9px)/2)] md:w-full">
-                  <input
-                    type="radio"
-                    id={`time` + id}
-                    name="time"
-                    className="peer absolute inset-0 opacity-0"
-                    value={selectedTime}
-                    checked={scheduleId === id}
-                    onChange={() => handleTimeValue({ id, startTime, endTime })}
-                  />
-                  <span className={cn(timeRadio)}>
-                    {startTime}~{endTime}
-                  </span>
-                </label>
-              );
-            })
+            selectedDate.map((item) =>
+              item.times.map((time) => {
+                const { startTime, endTime, id } = time;
+                return (
+                  <label
+                    key={id}
+                    htmlFor={`time` + id}
+                    className="relative w-[calc((100%-9px)/2)] md:w-full">
+                    <input
+                      type="radio"
+                      id={`time` + id}
+                      name="time"
+                      className="peer absolute inset-0 opacity-0"
+                      value={selectedTime}
+                      checked={scheduleId === id}
+                      onChange={() =>
+                        handleTimeValue({ id, startTime, endTime })
+                      }
+                    />
+                    <span className={cn(timeRadio)}>
+                      {startTime}~{endTime}
+                    </span>
+                  </label>
+                );
+              })
+            )
           ) : (
             <Text as="p" className="w-full text-center text-[#4B4B4B]">
               날짜를 선택해주세요.

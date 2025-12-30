@@ -113,7 +113,10 @@ export default function ReservationFooter({
         variant="primary"
         size="lg"
         disabled={disabled}
-        onClick={onClick}
+        onClick={() => {
+          if (scheduleId == null || count == null) return;
+          onClick({ scheduleId, count });
+        }}
         className={cn(
           isScheduleVisible && 'hidden lg:flex',
           'w-full lg:w-[135px]'
