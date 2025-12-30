@@ -13,7 +13,7 @@ const starButtonClass =
   'cursor-pointer transition-transform hover:scale-105 active:scale-95';
 
 /**
- * 별점 컴포넌트
+ * Rating 컴포넌트
  *
  * @example
  * <Rating value={3} /> 👉🏻 읽기 전용 (3점 표시)
