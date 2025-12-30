@@ -60,19 +60,19 @@ export default function ReservationFooter({
       className={cn(footerBox, !isScheduleVisible && 'border-t border-[#ddd]')}>
       {/* 인당가격 */}
       <div className={cn(infoPrice, shouldShowPrice && 'hidden')}>
-        <span
-          className={cn(
-            txtPrice,
-            'font-[var(--weight-title-md)] lg:text-[24px]'
-          )}>
+        <strong className={cn(txtPrice, 'lg:text-[24px]')}>
           ₩ {formatPrice(activityPrice)}
-        </span>
+        </strong>
         <span
           className={cn(
             txtPerson,
-            'lg:block lg:text-[20px] lg:tracking-[-3px]'
+            'lg:block lg:text-[20px] lg:tracking-[-1px]'
           )}>
-          / 1명
+          /{' '}
+          <span className="text-[16px] tracking-[-1px] lg:hidden lg:text-[20px]">
+            1
+          </span>
+          {isNotPC ? '명' : '인'}
         </span>
       </div>
 
