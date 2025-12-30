@@ -5,24 +5,24 @@ import { useState, useEffect } from 'react';
 import ic_delete from '@/assets/icons/activities/ic-image-delete.svg';
 
 interface PreviewProps {
-  image: File;
-  title: string;
-  onDelete: (image: File) => void;
+  file: File;
+  label: string;
+  onDelete: (file: File) => void;
 }
-export default function Preview({ image, title, onDelete }: PreviewProps) {
-  const handleDelete = (image: File) => {
-    onDelete(image);
+export default function Preview({ file, label, onDelete }: PreviewProps) {
+  const handleDelete = (file: File) => {
+    onDelete(file);
   };
   const [url, setUrl] = useState<null | string>(null);
 
   useEffect(() => {
-    const objectURL = URL.createObjectURL(image);
+    const objectURL = URL.createObjectURL(file);
     setUrl(objectURL);
 
     return () => {
       URL.revokeObjectURL(objectURL);
     };
-  }, [image]);
+  }, [file]);
 
   if (!url) {
     return null;
@@ -34,12 +34,12 @@ export default function Preview({ image, title, onDelete }: PreviewProps) {
         <Image
           fill
           src={url}
-          alt={`${title}`}
+          alt={`${label}`}
           className="h-[126px] w-[126px] rounded-2xl object-cover"
         />
       </div>
       <button
-        onClick={() => handleDelete(image)}
+        onClick={() => handleDelete(file)}
         className="absolute top-[-4px] right-[-4px]">
         <Image src={ic_delete} alt="이미지 삭제" />
       </button>

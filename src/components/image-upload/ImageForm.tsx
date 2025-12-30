@@ -11,14 +11,14 @@ import { cn } from '@/util/cn';
 interface ImageFormProps {
   imgCount: number;
   maxImages: number;
-  onChange: (files: FileList) => void;
+  onSelectFiles: (files: FileList) => void;
   multiple?: boolean;
 }
 
 export default function ImageForm({
   imgCount = 0,
   maxImages,
-  onChange,
+  onSelectFiles,
   multiple = true,
 }: ImageFormProps) {
   const { openModal, closeModal } = useModal();
@@ -40,7 +40,7 @@ export default function ImageForm({
       });
       return;
     }
-    onChange(files);
+    onSelectFiles(files);
     //연속으로 같은 파일 선택시 onChange 이벤트를 트리거 하기 위해서 추가함
     e.target.value = '';
   };
