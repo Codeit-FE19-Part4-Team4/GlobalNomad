@@ -1,5 +1,6 @@
-import { MY_PAGE_NAV_ITEMS } from './navigation';
 import SideMenuNavItem from './SideMenuNavItem';
+
+import { MY_PAGE_NAV_ITEMS } from '@/constants/navigation';
 
 export default function SideMenuNav() {
   return (
