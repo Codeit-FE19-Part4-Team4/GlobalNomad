@@ -4,13 +4,13 @@ export interface TimeSlot {
   id: number;
 }
 
-export interface Schedule {
+export interface ReservationSchedule {
   date: string;
   times: TimeSlot[];
 }
 
 export interface ReservationFormProps {
-  schedules: readonly Schedule[];
+  schedules: readonly ReservationSchedule[];
   activityPrice: number;
   activityId: number;
 }
@@ -24,7 +24,7 @@ export interface ReservationOptionProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   date: Date | undefined;
-  selectedDate: Schedule[];
+  selectedDate: ReservationSchedule[];
   scheduleId: number | undefined;
   setScheduleId: React.Dispatch<React.SetStateAction<number | undefined>>;
   selectedTime: string;

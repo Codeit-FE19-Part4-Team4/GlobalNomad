@@ -17,7 +17,7 @@ import {
 import {
   ReservationFormProps,
   ReservationProps,
-  Schedule,
+  ReservationSchedule,
 } from './reservation-type';
 import ReservationFooter from './ReservationFooter';
 import ReservationLayout from './ReservationLayout';
@@ -52,7 +52,9 @@ export default function ReservationForm({
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   const [count, setCount] = React.useState<number>(0);
   const [currentMonth, setCurrentMonth] = React.useState<Date>(new Date());
-  const [selectedDate, setSelectedDate] = React.useState<Schedule[]>([]);
+  const [selectedDate, setSelectedDate] = React.useState<ReservationSchedule[]>(
+    []
+  );
   const [selectedTime, setSelectedTime] = React.useState<string>('');
   const [scheduleId, setScheduleId] = React.useState<number | undefined>(
     undefined
