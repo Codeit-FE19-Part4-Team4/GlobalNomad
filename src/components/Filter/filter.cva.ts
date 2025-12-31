@@ -9,7 +9,6 @@ export const filterStyle = cva(
   [
     'inline-flex items-center gap-2',
     'shrink-0',
-    'whitespace-nowrap',
     'rounded-full',
     'border',
     'cursor-pointer',
