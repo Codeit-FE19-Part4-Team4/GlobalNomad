@@ -6,7 +6,6 @@ import { useState } from 'react';
 import ProfileButton from './ProfileButton';
 import ProfileMenu from './ProfileMenu';
 
-import imgBellActive from '@/assets/icons/common/ic-bell-active.svg';
 import imgBell from '@/assets/icons/common/ic-bell.svg';
 import useClickOutside from '@/hooks/useClickOutside';
 
@@ -14,6 +13,12 @@ export default function HeaderAuth() {
   const [isOpen, setIsOpen] = useState(false);
   const profileRef = useClickOutside(() => setIsOpen(false));
   const hasNotification = true; // 알림 버튼 임시 TODO
+
+  const handleLogout = () => {
+    // TODO: 실제 로그아웃 로직 구현
+    console.log('logout');
+  };
+
   return (
     <div className="flex items-center gap-5">
       <button aria-label="알림" className="relative h-7 w-7">
@@ -30,7 +35,12 @@ export default function HeaderAuth() {
           onClick={() => setIsOpen((prev) => !prev)}
         />
 
-        {isOpen && <ProfileMenu onClose={() => setIsOpen(false)} />}
+        {isOpen && (
+          <ProfileMenu
+            onClose={() => setIsOpen(false)}
+            onLogout={handleLogout}
+          />
+        )}
       </div>
     </div>
   );
