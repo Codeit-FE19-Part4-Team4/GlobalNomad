@@ -19,7 +19,7 @@ export default function NotificationCard({
   const status = statusComment.includes('승인') ? '승인' : '거절';
   const [preText, postText] = statusComment.split(status);
   return (
-    <div className="hover:bg-primary-100 flex w-full flex-col gap-2 px-5 py-4">
+    <li className="hover:bg-primary-100 flex w-full flex-col gap-2 px-5 py-4">
       <div className="flex items-center justify-between gap-[10.5px]">
         <span className="bold flex-1 text-[14px] font-medium text-gray-950">
           예약 {status}
@@ -43,6 +43,6 @@ export default function NotificationCard({
           <span>{postText}</span>
         </span>
       </p>
-    </div>
+    </li>
   );
 }
