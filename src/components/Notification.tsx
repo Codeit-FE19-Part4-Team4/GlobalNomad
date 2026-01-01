@@ -7,6 +7,7 @@ import NotificationCard from './NotificationCard';
 import ic_bell_on from '@/assets/icons/common/ic-bell-on.svg';
 import ic_bell from '@/assets/icons/common/ic-bell.svg';
 import ic_close from '@/assets/icons/common/ic-close.svg';
+import useClickOutside from '@/hooks/useClickOutside';
 import { type Notification } from '@/types/notification';
 
 //TODO: 데이터 연결시 삭제
@@ -46,6 +47,7 @@ const mockdata = {
 
 export default function Notification() {
   const [isOpen, setIsOpen] = useState(false);
+  const notificationRef = useClickOutside(() => setIsOpen(false));
   //TODO 데이터 조회 연결
   const notifications = mockdata.notifications;
   const hasNotification = notifications?.length > 0;
@@ -60,7 +62,9 @@ export default function Notification() {
       </button>
       {/* 알림 리스트 */}
       {isOpen && (
-        <div className="bg-background shadow-notification absolute top-[56px] z-10 h-fit rounded-[10px] pt-4 pb-2 max-md:right-6 max-md:left-6 md:top-[39px] md:mx-0 md:w-full">
+        <div
+          ref={notificationRef}
+          className="bg-background shadow-notification absolute top-[56px] z-10 h-fit rounded-[10px] pt-4 pb-2 max-md:right-6 max-md:left-6 md:top-[39px] md:mx-0 md:w-full">
           <div className="flex items-center justify-between border-b border-gray-100 px-5 pt-0 pb-[14px]">
             <span className="bold flex-1 text-[16px] text-gray-950">
               알림 {mockdata.totalCount}개
