@@ -30,7 +30,7 @@ export default function Preview({ file, label, onDelete }: PreviewProps) {
 
   return (
     <div className="relative rounded-2xl border border-gray-100">
-      <div className="relative h-20 w-20 sm:h-[126px] sm:w-[126px]">
+      <div className="relative h-20 w-20 md:h-[126px] md:w-[126px]">
         <Image
           fill
           src={url}
