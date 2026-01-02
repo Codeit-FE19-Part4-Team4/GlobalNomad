@@ -5,7 +5,7 @@
 
 import { cva } from 'class-variance-authority';
 
-const baseStyle = ['w-full rounded-2xl border px-4', 'transition-colors'];
+const baseStyle = ['w-full rounded-2xl border px-5', 'transition-colors'];
 
 const stateVariants = {
   default: [
