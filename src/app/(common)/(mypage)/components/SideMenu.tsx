@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import EditableProfile from '@/components/ProfileEditable';
 import SideMenuNav from '@/components/SideMenu/SideMenuNav';
 
-export default function SideMenu() {
+export default function SideMenu({ onClose }: { onClose?: () => void }) {
   const [profileImage, setProfileImage] = useState<string>();
 
   const handleImageChange = (file: File) => {
@@ -26,7 +26,7 @@ export default function SideMenu() {
       <div className="flex flex-col items-center pb-4 md:pb-6">
         <EditableProfile src={profileImage} onImageChange={handleImageChange} />
       </div>
-      <SideMenuNav />
+      <SideMenuNav onClose={onClose} />
     </aside>
   );
 }

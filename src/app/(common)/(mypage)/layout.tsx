@@ -14,7 +14,7 @@ export default function MyPageLayout({
   children: React.ReactNode;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-
+  const closeMenu = () => setIsOpen(false);
   return (
     <div className="mypage-layout relative flex min-h-screen">
       {/* 플로팅 버튼 */}
@@ -46,8 +46,8 @@ export default function MyPageLayout({
 
         {/* 왼쪽 슬라이드 메뉴 */}
         <aside
-          className={`absolute top-0 left-0 h-full w-[280px] transform bg-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} `}>
-          <SideMenu />
+          className={`absolute top-0 left-0 h-full w-[280px] transform bg-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <SideMenu onClose={closeMenu} />
         </aside>
       </div>
 
