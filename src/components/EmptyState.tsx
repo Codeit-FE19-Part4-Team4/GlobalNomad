@@ -23,9 +23,7 @@ export default function EmptyState({
 
       {/* 텍스트 */}
       {description && (
-        <p className="mt-6 text-[17px] font-medium text-gray-600">
-          {description}
-        </p>
+        <p className="mt-6 text-lg text-gray-600">{description}</p>
       )}
 
       {/* 버튼 */}
