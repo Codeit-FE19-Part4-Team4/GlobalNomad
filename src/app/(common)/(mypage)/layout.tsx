@@ -21,7 +21,7 @@ export default function MyPageLayout({
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="fixed bottom-15 left-6 z-[100] flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-white md:hidden"
+        className="fixed bottom-15 left-6 z-[100] flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 md:hidden"
         aria-label="사이드 메뉴 토글">
         {isOpen ? (
           <Image src={closeIcon} alt="메뉴 닫기" width={30} height={30} />

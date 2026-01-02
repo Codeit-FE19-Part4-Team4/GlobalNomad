@@ -1,6 +1,6 @@
 import EmptyState from '@/components/EmptyState';
 
-export default function myactivities() {
+export default function MyActivities() {
   return (
     <EmptyState
       description="아직 등록한 체험이 없어요."

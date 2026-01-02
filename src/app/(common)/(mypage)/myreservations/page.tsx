@@ -1,6 +1,6 @@
 import EmptyState from '@/components/EmptyState';
 
-export default function myreservations() {
+export default function MyReservations() {
   return (
     <EmptyState
       description="아직 예약 내역이 없어요"
