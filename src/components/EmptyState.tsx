@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import emptyImage from '@/assets/images/common/img-empty.svg';
+import Button from '@/components/Button';
 
 type EmptyStateProps = {
   description?: string;
@@ -27,11 +28,14 @@ export default function EmptyState({
       )}
 
       {/* 버튼 */}
-      <Link
+      <Button
+        as={Link}
         href={buttonHref}
-        className="bg-primary-500 mt-6 inline-block rounded-md px-6 py-2 text-white">
+        variant="primary"
+        size="xl"
+        className="mt-6 w-[183px] text-[16px] font-bold">
         {buttonText}
-      </Link>
+      </Button>
     </div>
   );
 }
