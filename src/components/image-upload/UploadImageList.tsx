@@ -90,7 +90,7 @@ export default function UploadImageList({
       <Text as="label" size={'body-lg'} className="bold">
         {label}
       </Text>
-      <div className="flex gap-3 sm:gap-[14px]">
+      <div className="flex gap-3 md:gap-[14px]">
         <ImageForm
           imgCount={images.length}
           onSelectFiles={handleAddImages}

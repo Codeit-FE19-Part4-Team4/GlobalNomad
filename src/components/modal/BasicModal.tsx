@@ -28,12 +28,12 @@ export default function BasicModal({
   onClick?: () => void;
 }) {
   return (
-    <div className="bg-background h-[140px] w-[320px] rounded-[30px] py-[30px] pt-[34px] pb-[30px] sm:h-[170px] sm:w-[400px] sm:px-10 sm:pt-10">
+    <div className="bg-background h-[140px] w-[320px] rounded-[30px] py-[30px] pt-[34px] pb-[30px] md:h-[170px] md:w-[400px] md:px-10 md:pt-10">
       <div className="flex w-full flex-col items-center justify-center gap-5">
-        <span className="text-[16px] font-bold sm:text-[18px]">{message}</span>
+        <span className="text-[16px] font-bold md:text-[18px]">{message}</span>
         <Button
           variant="primary"
-          className="h-[41px] w-[180px] sm:h-[47px] sm:w-[200px]"
+          className="h-[41px] w-[180px] md:h-[47px] md:w-[200px]"
           onClick={onClick}>
           {buttonText}
         </Button>

@@ -62,26 +62,26 @@ export default function Searchbar({
   };
 
   return (
-    <div className="flex flex-col items-center gap-3 py-4 sm:gap-9 sm:px-10 sm:py-8">
-      <label className="sm:text-title-xl text-body-lg bold">{title}</label>
-      <div className="shadow-search bg-background relative w-full rounded-2xl sm:rounded-3xl">
+    <div className="flex flex-col items-center gap-3 py-4 md:gap-9 md:px-10 md:py-8">
+      <label className="md:text-title-xl text-body-lg bold">{title}</label>
+      <div className="shadow-search bg-background relative w-full rounded-2xl md:rounded-3xl">
         <Image
           src={ic_search}
           alt="검색 아이콘"
-          className="absolute top-[14.5px] left-5 sm:top-[25px] sm:left-8"
+          className="absolute top-[14.5px] left-5 md:top-[25px] md:left-8"
         />
         <input
           value={value}
           name="searchbar"
           placeholder={placeholder}
-          className="h-[51px] w-full py-1.5 pr-2 pl-11 sm:h-[70px] sm:py-2.5 sm:pr-3 sm:pl-[66px]"
+          className="h-[51px] w-full py-1.5 pr-2 pl-11 md:h-[70px] md:py-2.5 md:pr-3 md:pl-[66px]"
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleEnterKeyDown}
         />
         <Button
           variant="primary"
           size="lg"
-          className="bold text-background absolute right-3 bottom-1.5 h-[41px] w-[85px] text-[14px] sm:bottom-2.5 sm:h-[50px] sm:w-[120px] sm:text-[16px]"
+          className="bold text-background absolute right-3 bottom-1.5 h-[41px] w-[85px] text-[14px] md:bottom-2.5 md:h-[50px] md:w-[120px] md:text-[16px]"
           onClick={handleClickButton}>
           검색하기
         </Button>
