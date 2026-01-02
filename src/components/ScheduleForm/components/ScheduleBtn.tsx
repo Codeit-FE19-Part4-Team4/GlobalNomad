@@ -1,0 +1,32 @@
+'use client';
+
+import Image from 'next/image';
+
+import IcoDelete from '@/assets/icons/activities/ic-minus.svg';
+import IcoAdd from '@/assets/icons/activities/ic-plus-white.svg';
+import { cn } from '@/util/cn';
+
+type ScheduleBtnProp = {
+  onClick: () => void;
+  isDraft?: boolean;
+};
+
+export function ScheduleBtn({ isDraft, onClick }: ScheduleBtnProp) {
+  return (
+    <div
+      className={cn(
+        isDraft && 'box-content pt-0 md:pt-[29px]',
+        'flex min-h-[54px] shrink-0 items-center'
+      )}>
+      <button
+        onClick={onClick}
+        className={cn(
+          'flex h-[28px] w-[28px] cursor-pointer items-center justify-center rounded-[50%] md:h-[42px] md:w-[42px]',
+          isDraft ? 'bg-primary-500' : 'bg-gray-50'
+        )}>
+        <Image src={isDraft ? IcoAdd : IcoDelete} alt="" />
+        <span className="sr-only">{isDraft ? '추가' : '삭제'}</span>
+      </button>
+    </div>
+  );
+}
