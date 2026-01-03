@@ -64,11 +64,12 @@ export default function Notification() {
       {isOpen && (
         <div
           ref={notificationRef}
-          className="bg-background shadow-notification absolute top-[56px] z-10 h-fit rounded-[10px] pt-4 pb-2 max-md:right-6 max-md:left-6 md:top-[39px] md:mx-0 md:w-full">
+          className="bg-background shadow-notification absolute top-[80px] z-10 h-fit rounded-[10px] pt-4 pb-2 max-md:right-6 max-md:left-6 md:top-[39px] md:mx-0 md:w-full">
           <div className="flex items-center justify-between border-b border-gray-100 px-5 pt-0 pb-[14px]">
             <span className="bold flex-1 text-[16px] text-gray-950">
               알림 {mockdata.totalCount}개
             </span>
+            {/* 모두읽음 처리 TODO */}
             <button className="text-[12px]">모두 읽음</button>
             <button onClick={() => setIsOpen(false)}>
               <Image src={ic_close} alt="알림 닫기" />
