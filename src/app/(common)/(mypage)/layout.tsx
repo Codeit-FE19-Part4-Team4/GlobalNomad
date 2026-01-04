@@ -13,6 +13,8 @@ export default function MyPageLayout({
   children: React.ReactNode;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const openMenu = () => setIsOpen(true);
+  const closeMenu = () => setIsOpen(false);
   return (
     <MenuProvider
       value={{
@@ -34,10 +36,7 @@ export default function MyPageLayout({
               : 'pointer-events-none opacity-0'
           )}>
           {/* 오버레이 */}
-          <div
-            className="absolute inset-0 bg-black/40"
-            onClick={() => setIsOpen(false)}
-          />
+          <div className="absolute inset-0 bg-black/40" onClick={closeMenu} />
 
           {/* 왼쪽 슬라이드 메뉴 */}
           <div
@@ -45,7 +44,7 @@ export default function MyPageLayout({
               'absolute top-0 left-0 flex h-full w-[280px] items-center bg-white transition-transform duration-300',
               isOpen ? 'translate-x-0' : '-translate-x-full'
             )}>
-            <SideMenu onClose={() => setIsOpen(false)} />
+            <SideMenu onClose={closeMenu} />
           </div>
         </div>
 
