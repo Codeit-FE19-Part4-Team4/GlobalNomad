@@ -8,7 +8,6 @@ export default function MyReservations() {
       <PageHeader
         title="예약내역"
         description="예약내역 변경 및 취소할 수 있습니다."
-        onOpenMenu={onOpenMenu}
       />
       <EmptyState
         description="아직 예약 내역이 없어요"
